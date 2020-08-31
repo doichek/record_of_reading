@@ -1,0 +1,34 @@
+<div class="text-center">
+  <h1>書籍の追加</h1>
+</div>
+
+<div class="row">
+  <div class="col-sm-6 offset-sm-3">
+
+    <%= form_with(model: @book, local: true) do |f| %>
+        <%= render 'layouts/error_messages', model: f.object %>
+      
+      <div class="form-group">
+        <%= f.label :status, '状態' %>
+        <%= f.select :status, {'未読': 0, '読中': 1, '読了': 2}, { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :title, '書籍名' %>
+        <%= f.text_field :title, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :author, '著者' %>
+        <%= f.text_field :author, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :comment, 'コメント' %>
+        <%= f.text_field :comment, class: 'form-control' %>
+      </div>
+
+      <%= f.submit '登録', class: 'btn btn-primary btn-block' %>
+    <% end %>
+  </div>
+</div>

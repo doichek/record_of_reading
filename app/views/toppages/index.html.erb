@@ -1,11 +1,98 @@
 <% if logged_in? %>
-  <p>ログイン完了ユーザ: <%= current_user.name %></p>
+    <aside class="col-sm-15">
+      <div class="card">
+        <div class="card-header">
+          <div class = "row">
+            <img class="img-fluid" src="<%= gravatar_url(@user, { size: 50 }) %>" alt="">
+            <h3 class="card-title"><%= @user.name %></h3>
+            
+            <%= render 'relationships/follow_button', user: @user %>
+            
+          </div>
+        </div>
+        <div class="card-body">
+           <table class="rounded mt-1 mb-1 table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>好きなジャンル</th>
+                            <th>好きな著者</th>
+                            <th>コメント</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><%= @user.genre %></td>
+                            <td><%= @user.author %></td>
+                            <td><%= @user.comment %></td>
+                        </tr>
+                    </tbody>
+            </table>
+        </div>
+        
+      </div>
+    </aside>
+    
+
+
+      
+    <ul class="nav mt-3">
+      <li class="nav-item">未読  <span class="badge badge-secondary"><%= @count_midoku %></span></a></li>
+      <li class="nav-item">読中  <span class="badge badge-secondary"><%= @count_dokutyu %></span></a></li>
+      <li class="nav-item">読了  <span class="badge badge-secondary"><%= @count_dokuryo %></span></a></li>
+      <% if current_user == @user %>
+      <%= link_to '追加', new_book_path, class: 'h-50 btn btn-sm btn-primary' %>
+      <% end %>
+    </ul>
+
+
+      <div class="col-sm-15">
+        
+        <table class="mt-2 table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>状態</th>
+                            <th>書籍名</th>
+                            <th>著者名</th>
+                            <th>登録日</th>
+                            <th>コメント</th>
+                        </tr>
+                    </thead>
+                    <% @books.each do |book| %>
+                    <tbody>
+                        <tr>
+                            <% if current_user == @user %>
+                              <td><%= link_to book.id, edit_book_path(book) %></td>
+                            <% else %>
+                              <td><%= book.id%></td>
+                            <% end %>
+                            <td>
+                                <% if book.status == '0'%>
+                                  未読
+                                <%elsif book.status == '1'%>
+                                  読中
+                                <% else %>
+                                  読了
+                                <% end %>
+                            </td>
+                            <td><%= book.title %></td>
+                            <td><%= book.author %></td>
+                            <td><%= book.created_at.strftime('%Y/%m/%d') %></td>
+                            <td><%= book.comment %></td>
+                        </tr>
+                    </tbody>
+                    <% end %>
+                    <%= paginate @books %>
+        </table>
+        
+     
+    </div>
 <% else %>
 <div class="center jumbotron">
   <div class="text-center">
     <h1>読書記録ツール</h1>
     <h2>あなたの読書体験を記録、共有していきましょう。</h2>
-      <%= link_to 'ログイン', signup_path, class: 'btn btn-lg btn-primary' %>
+      <%= link_to 'ログイン', login_path, class: 'btn btn-lg btn-primary' %>
         <h3>または</h3>
       <%= link_to '新規登録', signup_path, class: 'btn btn-lg btn-primary' %>
   </div>
