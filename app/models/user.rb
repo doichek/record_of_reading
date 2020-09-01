@@ -6,6 +6,10 @@ before_save { self.email.downcase! }
                     uniqueness: { case_sensitive: false }
   has_secure_password
   
+  validates :genre, presence: false, length: { maximum: 50 }
+  validates :author, presence: false, length: { maximum: 50 }
+  validates :comment, presence: false, length: { maximum: 255 }
+  
   has_many :books
   
   has_many :relationships

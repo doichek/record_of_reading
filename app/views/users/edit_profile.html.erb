@@ -1,7 +1,9 @@
-<h1>ユーザ名:<%= @user.name %> プロフィール内容の変更</h1>
-<div class="row">
+<div class="text-center">
+  <h1>プロフィール内容の変更</h1>
+</div>
   
-  <div class="col-6">
+<div class="row">
+  <div class="col-sm-6 offset-sm-3">
       
     <%= form_with(model: @user, local: true) do |f| %>
         <%= render 'layouts/error_messages', model: f.object %>
@@ -18,10 +20,10 @@
 
       <div class="form-group">
         <%= f.label :comment, 'コメント' %>
-        <%= f.text_field :comment, class: 'form-control' %>
+        <%= f.text_area :comment, class: 'form-control' %>
       </div>
 
-      <%= f.submit '登録', class: 'btn btn-primary btn-block' %>
+      <%= f.submit '変更', class: 'btn btn-primary btn-block' %>
     <% end %>
       
   </div>

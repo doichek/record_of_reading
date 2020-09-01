@@ -25,9 +25,27 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><%= user.genre %></td>
-                            <td><%= user.author %></td>
-                            <td><%= user.comment %></td>
+                            <td>
+                              <% if user.genre == nil or user.genre == '' %>
+                                未登録
+                              <% else %>
+                                <%= user.genre %>
+                              <% end %>
+                            </td>
+                            <td>
+                              <% if user.author == nil or user.author == '' %>
+                                未登録
+                              <% else %>
+                                <%= user.author %>
+                              <% end %>
+                            </td>
+                              <td>
+                              <% if user.comment == nil or user.comment == '' %>
+                                未登録
+                              <% else %>
+                                <%= user.comment %>
+                              <% end %>
+                            </td>
                         </tr>
                     </tbody>
             </table>

@@ -11,6 +11,7 @@
           </div>
         </div>
         <div class="card-body">
+          
            <table class="rounded mt-1 mb-1 table table-striped table-bordered">
                     <thead>
                         <tr>
@@ -21,12 +22,31 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><%= @user.genre %></td>
-                            <td><%= @user.author %></td>
-                            <td><%= @user.comment %></td>
+                            <td>
+                              <% if @user.genre == nil or @user.genre == '' %>
+                                未登録
+                              <% else %>
+                                <%= @user.genre %>
+                              <% end %>
+                            </td>
+                            <td>
+                              <% if @user.author == nil or @user.author == '' %>
+                                未登録
+                              <% else %>
+                                <%= @user.author %>
+                              <% end %>
+                            </td>
+                              <td>
+                              <% if @user.comment == nil or @user.comment == '' %>
+                                未登録
+                              <% else %>
+                                <%= @user.comment %>
+                              <% end %>
+                            </td>
                         </tr>
                     </tbody>
             </table>
+            
         </div>
         
       </div>
@@ -92,8 +112,8 @@
   <div class="text-center">
     <h1>読書記録ツール</h1>
     <h2>あなたの読書体験を記録、共有していきましょう。</h2>
-      <%= link_to 'ログイン', login_path, class: 'btn btn-lg btn-primary' %>
-        <h3>または</h3>
+      <%= link_to 'ログイン', login_path, class: 'mt-2 btn btn-lg btn-primary' %>
+        <h5>または</h5>
       <%= link_to '新規登録', signup_path, class: 'btn btn-lg btn-primary' %>
   </div>
 </div>

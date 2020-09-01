@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_user_logged_in, only: [:index, :followings, :followers]
+  before_action :require_user_logged_in, only: [:index, :followings, :followers, :edit_user, :edit_profile]
 
   def new
     @user = User.new
@@ -32,11 +32,16 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      flash[:success] = '登録内容は正常に更新されました'
+      flash[:success] = '正常に更新されました'
       redirect_to root_url
     else
-      flash.now[:danger] = '登録内容は更新されませんでした'
-      render :edit
+      flash.now[:danger] = '更新されませんでした'
+      @path = Rails.application.routes.recognize_path(request.referer)
+      if @path[:action] == "edit_user"
+        render "users/edit_user"
+      else
+        render "users/edit_profile"
+      end
     end
   end
   
