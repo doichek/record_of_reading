@@ -49,15 +49,15 @@
     
     <table class="table table-striped table-bordered">
             <thead>
-                <tr><th>コメント</th></tr>
+                <tr><th>感想</th></tr>
             </thead>
             <tbody>
-                <tr><td><%=@book.comment%></td></tr>
+                <tr><td style="white-space:pre-line"><%=@book.comment%></td></tr>
             </tbody>
     </table>
 
 
     <%= link_to "編集", edit_book_path(@book), class: 'btn btn-primary btn-block' %>
-    <%= link_to "削除", @book, method: :delete, data: { confirm: "本当に削除してよろしいですか" }, class: 'btn btn-danger btn-block' %>
+    <%= link_to "削除", @book, method: :delete, data: { confirm: "本当に削除してよろしいですか" }, class: 'btn btn-danger btn-block', style: 'margin-bottom: 30px;' %>
   </div>
 </div>
