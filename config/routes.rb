@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     #   get :search
     # end
   end
-  resources :books, only: [:new, :create, :destroy, :edit, :update]
+  resources :books, only: [:new,:show, :create, :destroy, :edit, :update]
   
   resources :relationships, only: [:create, :destroy]
 end

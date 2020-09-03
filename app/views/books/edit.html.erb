@@ -26,13 +26,11 @@
 
       <div class="form-group">
         <%= f.label :comment, 'コメント' %>
-        <%= f.text_area :comment, class: 'form-control' %>
+        <%= f.text_area :comment, class: 'form-control', size: "20x5"%>
       </div>
 
       <%= f.submit '変更', class: 'btn btn-primary btn-block' %>
     <% end %>
-    
-    <%= link_to "削除", @book, method: :delete, data: { confirm: "本当に削除してよろしいですか" }, class: 'btn btn-danger btn-block' %>
       
   </div>
 </div>

@@ -13,7 +13,7 @@ class BooksController < ApplicationController
     else
       @books = current_user.books.order(id: :desc).page(params[:page])
       flash.now[:danger] = '書籍の追加に失敗しました。'
-      render 'toppages/index'
+      render 'books/new'
     end
   end
 
@@ -21,8 +21,11 @@ class BooksController < ApplicationController
     @book = current_user.books.find_by(id: params[:id])
     @book.destroy
     flash[:success] = '書籍を削除しました。'
-    #redirect_back(fallback_location: root_path)
     redirect_to root_url
+  end
+
+  def show
+    @book = Book.find(params[:id])
   end
 
   def edit
@@ -33,7 +36,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     if @book.update(book_params)
       flash[:success] = '登録内容は正常に更新されました'
-      redirect_to root_url
+      redirect_to book_path(@book)
     else
       flash.now[:danger] = '登録内容は更新されませんでした'
       render :edit
@@ -47,11 +50,4 @@ class BooksController < ApplicationController
     params.require(:book).permit(:status,:title,:author,:comment)
   end
   
-  
-  def correct_user
-    @book = current_user.books.find_by(id: params[:id])
-    unless @book
-      redirect_to root_url
-    end
-  end
 end

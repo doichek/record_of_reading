@@ -1,59 +1,50 @@
 <% if logged_in? %>
-    <aside class="col-sm-15">
-      <div class="card">
-        <div class="card-header">
-          <div class = "row">
-            <img class="img-fluid" src="<%= gravatar_url(@user, { size: 50 }) %>" alt="">
-            <h3 class="card-title"><%= @user.name %></h3>
-            
+    <li class="media">
+        <img class="mr-2 rounded" src="<%= gravatar_url(@user, { size: 50 }) %>" alt="">
+        <div class="media-body">
+          <div>
+            <%= @user.name %>
+          </div>
+          <div>
             <%= render 'relationships/follow_button', user: @user %>
-            
           </div>
         </div>
-        <div class="card-body">
+    </li>
           
-           <table class="rounded mt-1 mb-1 table table-striped table-bordered">
-                    <thead>
-                        <tr>
-                            <th>好きなジャンル</th>
-                            <th>好きな著者</th>
-                            <th>コメント</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                              <% if @user.genre == nil or @user.genre == '' %>
-                                未登録
-                              <% else %>
-                                <%= @user.genre %>
-                              <% end %>
-                            </td>
-                            <td>
-                              <% if @user.author == nil or @user.author == '' %>
-                                未登録
-                              <% else %>
-                                <%= @user.author %>
-                              <% end %>
-                            </td>
-                              <td>
-                              <% if @user.comment == nil or @user.comment == '' %>
-                                未登録
-                              <% else %>
-                                <%= @user.comment %>
-                              <% end %>
-                            </td>
-                        </tr>
-                    </tbody>
-            </table>
-            
-        </div>
-        
-      </div>
-    </aside>
-    
-
-
+   <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+            <th>好きなジャンル</th>
+            <th>好きな著者</th>
+            <th>コメント</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <% if @user.genre == nil or @user.genre == '' %>
+              未登録
+            <% else %>
+              <%= @user.genre %>
+            <% end %>
+          </td>
+          <td>
+            <% if @user.author == nil or @user.author == '' %>
+              未登録
+            <% else %>
+              <%= @user.author %>
+            <% end %>
+          </td>
+            <td>
+            <% if @user.comment == nil or @user.comment == '' %>
+              未登録
+            <% else %>
+              <%= @user.comment %>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
       
     <ul class="nav mt-3">
       <li class="nav-item">未読  <span class="badge badge-secondary"><%= @count_midoku %></span></a></li>
@@ -63,50 +54,50 @@
       <%= link_to '追加', new_book_path, class: 'h-50 btn btn-sm btn-primary' %>
       <% end %>
     </ul>
-
-
-      <div class="col-sm-15">
-        
-        <table class="mt-2 table table-striped table-bordered">
-                    <thead>
-                        <tr>
-                            <th>No.</th>
-                            <th>状態</th>
-                            <th>書籍名</th>
-                            <th>著者名</th>
-                            <th>登録日</th>
-                            <th>コメント</th>
-                        </tr>
-                    </thead>
-                    <% @books.each do |book| %>
-                    <tbody>
-                        <tr>
-                            <% if current_user == @user %>
-                              <td><%= link_to book.id, edit_book_path(book) %></td>
-                            <% else %>
-                              <td><%= book.id%></td>
-                            <% end %>
-                            <td>
-                                <% if book.status == '0'%>
-                                  未読
-                                <%elsif book.status == '1'%>
-                                  読中
-                                <% else %>
-                                  読了
-                                <% end %>
-                            </td>
-                            <td><%= book.title %></td>
-                            <td><%= book.author %></td>
-                            <td><%= book.created_at.strftime('%Y/%m/%d') %></td>
-                            <td><%= book.comment %></td>
-                        </tr>
-                    </tbody>
+    
+    <div class="col-sm-15">
+      <table class="mt-2 table table-striped table-bordered">
+          <thead>
+              <tr>
+                  <th>No.</th>
+                  <th>状態</th>
+                  <th>書籍名</th>
+                  <th>著者名</th>
+                  <th>コメント</th>
+              </tr>
+          </thead>
+          <% @books.each do |book| %>
+          <tbody>
+              <tr>
+                  <% if current_user == @user %>
+                    
+                    <td><%= link_to book.id, book_path(book) %></td>
+                  <% else %>
+                    <td><%= book.id%></td>
+                  <% end %>
+                  <td>
+                      <% if book.status == '0'%>
+                        未読
+                      <%elsif book.status == '1'%>
+                        読中
+                      <% else %>
+                        読了
+                      <% end %>
+                  </td>
+                  <td><%= book.title %></td>
+                  <td><%= book.author %></td>
+                  <td>
+                    <% if book.comment != ''%>
+                      あり
                     <% end %>
-                    <%= paginate @books %>
+                  </td>
+              </tr>
+          </tbody>
+          <% end %>
+          <%= paginate @books %>
         </table>
-        
-     
     </div>
+    
 <% else %>
 <div class="center jumbotron">
   <div class="text-center">
