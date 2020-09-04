@@ -69,12 +69,7 @@
           <% @books.each do |book| %>
           <tbody>
               <tr>
-                  <% if current_user == @user %>
-                    
-                    <td><%= link_to book.id, book_path(book) %></td>
-                  <% else %>
-                    <td><%= book.id%></td>
-                  <% end %>
+                  <td><%= link_to book.id, book_path(book) %></td>
                   <td>
                       <% if book.status == '0'%>
                         未読
