@@ -1,106 +1,113 @@
 <% if logged_in? %>
-    <li class="media">
-        <img class="mr-2 rounded" src="<%= gravatar_url(@user, { size: 50 }) %>" alt="">
-        <div class="media-body">
-          <div>
-            <%= @user.name %>
-          </div>
-          <div>
-            <%= render 'relationships/follow_button', user: @user %>
-          </div>
-        </div>
-    </li>
-          
-   <table class="table table-striped table-bordered">
+  <% unless @books.any? %>
+    <p class="alert alert-info mt-1"><span class="fas fa-exclamation-circle"></span>「追加」を押して本を登録していきましょう</p>
+  <% end %>
+  <% if (@user.genre == nil or @user.genre == '') and (@user.author == nil or @user.author == '') and (@user.comment == nil or @user.comment == '') %>
+    <p class="alert alert-info mt-1"><span class="fas fa-exclamation-circle"></span>「ユーザ名＞プロフィール内容変更」を押してプロフィールを完成させましょう</p>
+  <% end %>
+  <li class="media">
+    <img class="mr-2 rounded" src="<%= gravatar_url(@user, { size: 50 }) %>" alt="">
+    <div class="media-body">
+      <div>
+        <%= @user.name %>
+      </div>
+      <div>
+        <%= render 'relationships/follow_button', user: @user %>
+      </div>
+    </div>
+  </li>
+        
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>好きなジャンル</th>
+        <th>好きな著者</th>
+        <th>コメント</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <% if @user.genre != nil and @user.genre != '' %>
+            <%= @user.genre %>
+          <% end %>
+        </td>
+        <td>
+          <% if @user.author != nil and @user.author != '' %>
+            <%= @user.author %>
+          <% end %>
+        </td>
+        <td>
+          <% if @user.comment != nil and @user.comment != '' %>
+            <%= @user.comment %>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+    
+  <ul class="nav mt-3">
+    <li class="nav-item mr-3">未読<span class="badge badge-secondary"><%= @count_midoku %></span></li>
+    <li class="nav-item mr-3">読中<span class="badge badge-secondary"><%= @count_dokutyu %></span></li>
+    <li class="nav-item mr-3">読了<span class="badge badge-secondary"><%= @count_dokuryo %></span></li>
+    <% if current_user == @user %>
+    <%= link_to '追加', new_book_path, class: 'btn btn-sm btn-primary' %>
+    <% end %>
+  </ul>
+  
+  <div class="col-sm-15">
+    <table class="mt-2 table table-striped table-bordered">
       <thead>
         <tr>
-            <th>好きなジャンル</th>
-            <th>好きな著者</th>
-            <th>コメント</th>
+          <th>No.</th>
+          <th>状態</th>
+          <th>書籍名</th>
+          <th>著者名</th>
+          <th>感想</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td>
-            <% if @user.genre == nil or @user.genre == '' %>
-              未登録
-            <% else %>
-              <%= @user.genre %>
-            <% end %>
-          </td>
-          <td>
-            <% if @user.author == nil or @user.author == '' %>
-              未登録
-            <% else %>
-              <%= @user.author %>
-            <% end %>
-          </td>
-            <td>
-            <% if @user.comment == nil or @user.comment == '' %>
-              未登録
-            <% else %>
-              <%= @user.comment %>
-            <% end %>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-      
-    <ul class="nav mt-3">
-      <li class="nav-item">未読  <span class="badge badge-secondary"><%= @count_midoku %></span></a></li>
-      <li class="nav-item">読中  <span class="badge badge-secondary"><%= @count_dokutyu %></span></a></li>
-      <li class="nav-item">読了  <span class="badge badge-secondary"><%= @count_dokuryo %></span></a></li>
-      <% if current_user == @user %>
-      <%= link_to '追加', new_book_path, class: 'h-50 btn btn-sm btn-primary' %>
-      <% end %>
-    </ul>
-    
-    <div class="col-sm-15">
-      <table class="mt-2 table table-striped table-bordered">
-          <thead>
-              <tr>
-                  <th>No.</th>
-                  <th>状態</th>
-                  <th>書籍名</th>
-                  <th>著者名</th>
-                  <th>感想</th>
-              </tr>
-          </thead>
-          <% @books.each do |book| %>
+      <% if @books.any? %>
+        <% @books.each do |book| %>
           <tbody>
-              <tr>
-                  <td><%= link_to book.id, book_path(book) %></td>
-                  <td>
-                      <% if book.status == '0'%>
-                        未読
-                      <%elsif book.status == '1'%>
-                        読中
-                      <% else %>
-                        読了
-                      <% end %>
-                  </td>
-                  <td><%= book.title %></td>
-                  <td><%= book.author %></td>
-                  <td>
-                    <% if book.comment != ''%>
-                      あり
-                    <% end %>
-                  </td>
-              </tr>
+            <tr>
+              <td><%= link_to book.id, book_path(book) %></td>
+              <td>
+                <% if book.status == '0'%>
+                  未読
+                <%elsif book.status == '1'%>
+                  読中
+                <% else %>
+                  読了
+                <% end %>
+              </td>
+              <td><%= book.title %></td>
+              <td><%= book.author %></td>
+              <td>
+                <% if book.comment != ''%>
+                  あり
+                <% end %>
+              </td>
+            </tr>
           </tbody>
-          <% end %>
-          <%= paginate @books %>
-        </table>
-    </div>
+        <% end %>
+        <%= paginate @books %>
+      <% else %>
+        <tbody>
+          <tr>
+            <td></td><td></td><td></td><td></td><td></td>
+          </tr>
+        </tbody>
+      <% end %>
+    </table>
+  </div>
     
 <% else %>
-<div class="center jumbotron">
-  <div class="text-center">
-    <h1>読書記録ツール</h1>
-    <h2>あなたの読書体験を記録、共有していきましょう。</h2>
-      <%= link_to 'ログイン', login_path, class: 'mt-2 btn btn-lg btn-primary' %>
-        <h5>または</h5>
-      <%= link_to '新規登録', signup_path, class: 'btn btn-lg btn-primary' %>
+  <div class="center jumbotron">
+      <h1>こんにちは読書の世界へ</h1>
+      <p>あなたの読書体験を記録、共有していきましょう。</p>
+      <%= link_to 'ログイン', login_path, class: 'mt-2 mb-2 btn btn-primary' %>
+      <p>または</p>
+      <%= link_to '新規登録', signup_path, class: 'btn btn-secondary' %>
   </div>
-</div>
+  
 <% end %>

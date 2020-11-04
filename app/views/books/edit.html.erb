@@ -6,11 +6,10 @@
   <div class="col-sm-6 offset-sm-3">
       
     <%= form_with(model: @book, local: true) do |f| %>
-        <%= render 'layouts/error_messages', model: f.object %>
+      <%= render 'layouts/error_messages', model: f.object %>
       
       <div class="form-group">
         <%= f.label :status, '状態' %>
-
         <%= f.select :status, {'未読': 0, '読中': 1, '読了': 2}, { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
       </div>
 

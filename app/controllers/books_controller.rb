@@ -8,19 +8,19 @@ class BooksController < ApplicationController
   def create
     @book = current_user.books.build(book_params)
     if @book.save
-      flash[:success] = '書籍を追加しました。'
+      flash[:success] = '書籍を追加しました'
       redirect_to root_url
     else
       @books = current_user.books.order(id: :desc).page(params[:page])
-      flash.now[:danger] = '書籍の追加に失敗しました。'
-      render 'books/new'
+      flash.now[:danger] = '書籍の追加に失敗しました'
+      render :new
     end
   end
 
   def destroy
     @book = current_user.books.find_by(id: params[:id])
     @book.destroy
-    flash[:success] = '書籍を削除しました。'
+    flash[:success] = '書籍を削除しました'
     redirect_to root_url
   end
 
@@ -30,19 +30,21 @@ class BooksController < ApplicationController
 
   def edit
     @book = Book.find(params[:id])
+    if @user != current_user
+      redirect_to root_url
+    end
   end
 
   def update
     @book = Book.find(params[:id])
     if @book.update(book_params)
-      flash[:success] = '登録内容は正常に更新されました'
-      redirect_to book_path(@book)
+      flash[:success] = '書籍を編集しました'
+      redirect_to root_url
     else
-      flash.now[:danger] = '登録内容は更新されませんでした'
+      flash.now[:danger] = '書籍の編集に失敗しました'
       render :edit
     end
   end
-
 
   private
 

@@ -1,3 +1,24 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+.nav-tabs .nav-link {
+    border: 2px solid transparent;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: #ffdead;
+    border-color: #adb5bd #adb5bd #ffdead;
+}
+
+.nav-tabs {
+    border-bottom: 2px solid #adb5bd;
+}
+
+@media(max-width:670px) {
+    a:nth-of-type(1){
+        height: 68px;
+    }
+}

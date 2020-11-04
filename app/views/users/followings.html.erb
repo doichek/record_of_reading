@@ -5,6 +5,7 @@
       <li class="nav-item"><a href="<%= followings_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(followings_user_path(@user)) %>">フォローユーザ</a></li>
       <li class="nav-item"><a href="<%= followers_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(followers_user_path(@user)) %>">フォロワーユーザ</a></li>
     </ul>
-    <%= render 'users', users: @followings %>
   </div>
 </div>
+
+<%= render 'users', users: @followings %>

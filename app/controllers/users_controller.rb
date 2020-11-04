@@ -1,46 +1,49 @@
 class UsersController < ApplicationController
+  #ログインが必須
   before_action :require_user_logged_in, only: [:index, :followings, :followers, :edit_user, :edit_profile]
-
+  
   def new
     @user = User.new
   end
 
   def create
     @user = User.new(user_params)
-
     if @user.save
-      flash[:success] = 'ユーザを登録しました。'
+      flash[:success] = 'ユーザを登録しました'
       session[:user_id] = @user.id
-      #redirect_to @user
       redirect_to root_url
     else
-      flash.now[:danger] = 'ユーザの登録に失敗しました。'
+      flash.now[:danger] = 'ユーザの登録に失敗しました'
       render :new
     end
   end
 
   def edit_user
-    #@user = User.find(params[:id])
     @user = User.find(params[:format])
+    if @user != current_user
+      redirect_to root_url
+    end
   end
   
   def edit_profile
-    #@user = User.find(params[:id])
     @user = User.find(params[:format])
+    if @user != current_user
+      redirect_to root_url
+    end
   end
   
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      flash[:success] = '正常に更新されました'
+      flash[:success] = '更新しました'
       redirect_to root_url
     else
-      flash.now[:danger] = '更新されませんでした'
+      flash.now[:danger] = '更新に失敗しました'
       @path = Rails.application.routes.recognize_path(request.referer)
       if @path[:action] == "edit_user"
-        render "users/edit_user"
+        render :edit_user
       else
-        render "users/edit_profile"
+        render :edit_profile
       end
     end
   end
