@@ -15,29 +15,24 @@
  */
  
  
- /*//footerを最下部に固定する処理*/
+ /*footerを最下部に固定する処理*/
 body {
-    margin: 0;
-    display: flex;
-    flex-flow: column;
-    min-height: 100vh;
-    background-color:#ffdead;
+  margin: 0;
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
+  background-color:#ffdead;
 }
 
 .container {
-    flex: 1;
+  flex: 1;
 }
-
-/*.book-list .profile-card{*/
-/* background-image: url("siori-yellow-fixfixfix.jpg"); */
-/* background-size: cover;*/
-/* height:500px!important;*/
-/*}*/
+/*ここまで*/
 
 .profile-card{
-background-color: #FFFDE7;
-	background-size: 80px 80px;
-	background-image:
+  background-color: #FFFDE7;
+  background-size: 80px 80px;
+background-image:
 	 linear-gradient(rgba(215,204,200,.7) 1%, rgba(215,204,200,.7) 1%, transparent 1%,
 	  transparent 99%, rgba(215,204,200,.7) 99%, rgba(215,204,200,.7) 100%),
 	 linear-gradient(90deg, rgba(215,204,200,.7) 1%, rgba(215,204,200,.7) 1%, transparent 1%,
@@ -67,8 +62,6 @@ background-color: #FFFDE7;
   border: 1px solid #686369;
 }
 
-
-
 .bg-book{
   background-image: url("book.jpg"); 
   background-size: cover;
@@ -93,104 +86,102 @@ background-color: #FFFDE7;
 
 
 .btn-primary {
-    background-color: #cd9557;
-    border-color: #cd9557;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    border-radius: 0.9rem;
+  background-color: #cd9557;
+  border-color: #cd9557;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-radius: 0.9rem;
 }
 
 .btn-danger {
-    padding-top: 4px;
-    padding-bottom: 4px;
-    border-radius: 0.9rem;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-radius: 0.9rem;
 }
 
 .btn-primary:active, .btn-primary:focus, .btn-primary:hover {
-    background-color: #ba7c37!important;
-    border-color: #ba7c37!important;
+  background-color: #ba7c37!important;
+  border-color: #ba7c37!important;
 }
 
-
 thead{
-    background-color:#deb887;
+  background-color:#deb887;
 }
 
 .navbar{
-    /*background-color: #696969;*/
-     background-color: rgba(51, 81, 117, 1);
+  background-color: rgba(51, 81, 117, 1);
 }
 
-  .subtitle{
-      font-size: 2.5rem;
-  }
+.subtitle{
+  font-size: 2.5rem;
+}
   
-  .alert{
-      padding-bottom:4px!important; 
-      padding-top:4px!important; 
-      font-size:12px!important; 
-      font-weight:bold!important;
-  }
+.alert{
+  padding-bottom:4px!important; 
+  padding-top:4px!important; 
+  font-size:12px!important; 
+  font-weight:bold!important;
+}
   
-  .book-list .nav-item{
-    border-radius: 10px 10px 0px 0px; 
-  }
+.book-list .nav-item{
+  border-radius: 10px 10px 0px 0px; 
+}
   
-  .book-list .nav-item1{
-    background-color:#cddc39;
-  }
+.book-list .nav-item1{
+  background-color:#cddc39;
+}
   
-  .book-list .nav-item2{
-    background-color:#00bcd4;
-  }
+.book-list .nav-item2{
+  background-color:#00bcd4;
+}
   
-  .book-list .nav-item3{
-    background-color:#ff5722;
-  }
+.book-list .nav-item3{
+  background-color:#ff5722;
+}
 
 .book-card p{
-    writing-mode: vertical-rl;
-    color: white;
-    font-size: 0.8rem;
-    font-family: 'Noto Serif JP', serif;
+  writing-mode: vertical-rl;
+  color: white;
+  font-size: 0.8rem;
+  font-family: 'Noto Serif JP', serif;
 }
 
 .book-card p:nth-of-type(1){
-height:5rem;
+  height:5rem;
 }
 .book-card p:nth-of-type(2){
-height:11rem;
+  height:11rem;
 }
 
 .book-card{
- background-image: url("new-green-book.jpg"); 
- background-size: cover;
- position:relative;
- top:5px;
- text-decoration: none!important;
- font-weight:bold;
+  background-image: url("new-green-book.jpg"); 
+  background-size: cover;
+  position:relative;
+  top:5px;
+  text-decoration: none!important;
+  font-weight:bold;
 }
 
 .book-card:hover{
- top:-10px;
+  top:-10px;
 }
 
 .book-card div{
-    position:absolute;
-    top: 17.5rem;
+  position:absolute;
+  top: 17.5rem;
 }
 
 .book-card span{
-    font-size:0.5rem;
-    width:2.9rem;
+  font-size:0.5rem;
+  width:2.9rem;
 }
 
 .tabel-profile{
- font-size: 0.5rem;   
+  font-size: 0.5rem;   
 }
 
 .tabel-profile td{
- padding: 8px;   
+  padding: 8px;   
 }
 
 .card-columns {
@@ -198,29 +189,27 @@ height:11rem;
 }
 
 .card-columns .profile-card:hover{
-    background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .shelf{
-    border-top: 50px solid #734e30;
-    border-left: 50px solid #734e30;
-    border-right: 50px solid #734e30;
+  border-top: 50px solid #734e30;
+  border-left: 50px solid #734e30;
+  border-right: 50px solid #734e30;
 }
 
 .shelf-dummy{
-    border-top: 20px solid #734e30;
-    border-left: 50px solid #734e30;
-    border-right: 50px solid #734e30;
-    border-bottom: 80px solid #734e30;
-    position:relative;
+  border-top: 20px solid #734e30;
+  border-left: 50px solid #734e30;
+  border-right: 50px solid #734e30;
+  border-bottom: 80px solid #734e30;
+  position:relative;
 }
 
-
-
 .bg-book-open{
-    background-image: url("book-open.jpg"); 
-    background-size: 960px 620px;
-    height:620px;
+  background-image: url("book-open.jpg"); 
+  background-size: 960px 620px;
+  height:620px;
 }
 
 .nav-pills .nav-link.active{
@@ -247,11 +236,11 @@ height:11rem;
 
 
 .shelf-middle-SM{
-    display:none;
+  display:none;
 }
 
 .shelf-middle-TABLET{
-    display:none;
+  display:none;
 }
 
 .shelf-middle-PC{
@@ -270,7 +259,7 @@ height:11rem;
   
   .bg-book-open{
     background-size: 100% 100%;
-　}
+  }
     
   .masthead-bg {
     position: absolute;
@@ -292,9 +281,9 @@ height:11rem;
     padding-left:0px;
   }
     
-  .card-columns {
+  .card-columns{
     columns: 2;
-   }
+  }
    
   .shelf-dummy {
     border-top: 20px solid #734e30;
@@ -305,11 +294,11 @@ height:11rem;
   
   .shelf {
     border-top: 50px solid #734e30;
-  border-left: 25px solid #734e30;
-  border-right: 25px solid #734e30;
-    }
+    border-left: 25px solid #734e30;
+    border-right: 25px solid #734e30;
+  }
   
- .shelf-middle-SM{
+  shelf-middle-SM{
     display:none;
   }
 
@@ -355,7 +344,7 @@ height:11rem;
   }
   
   .subtitle{
-      font-size: 1.5rem;
+    font-size: 1.5rem;
   }
   
   .shelf{
@@ -389,7 +378,7 @@ height:11rem;
     margin-top:0rem;
     margin-bottom:0rem;
     display:block;
-}
+  }
 
   .shelf-middle-TABLET{
      display:none;
@@ -402,6 +391,5 @@ height:11rem;
     margin-bottom:0rem;
     display:block;
   }
-  
   
 }
