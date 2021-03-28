@@ -9,26 +9,26 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:success] = 'ユーザを登録しました'
+      flash[:success] = 'ユーザを登録し、ログインしました'
       session[:user_id] = @user.id
-      redirect_to root_url
+      redirect_to books_url
     else
       flash.now[:danger] = 'ユーザの登録に失敗しました'
       render :new
     end
   end
 
-  def edit_user
+  def edit_account
     @user = User.find(params[:format])
     if @user != current_user
-      redirect_to root_url
+      redirect_to books_url
     end
   end
   
   def edit_profile
     @user = User.find(params[:format])
     if @user != current_user
-      redirect_to root_url
+      redirect_to books_url
     end
   end
   
@@ -36,12 +36,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:success] = '更新しました'
-      redirect_to root_url
+      redirect_to books_url
     else
       flash.now[:danger] = '更新に失敗しました'
       @path = Rails.application.routes.recognize_path(request.referer)
       if @path[:action] == "edit_user"
-        render :edit_user
+        render :edit_account
       else
         render :edit_profile
       end
@@ -71,5 +71,5 @@ end
 private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :genre, :author, :comment)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation,:image, :genre, :author, :comment)
   end

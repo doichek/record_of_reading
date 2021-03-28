@@ -1,34 +1,38 @@
-<div class="text-center">
-  <h1>新規登録</h1>
-</div>
+<div class="masthead-bg"></div>
 
 <div class="row">
-  <div class="col-sm-6 offset-sm-3">
+  <div class="col-sm-4">
+  <h1 class="mt-5">ようこそ<br>読書の世界へ</h1>
+  <p>読書体験を記録、共有しましょう</p>
+    
     
     <%= form_with(model: @user, local: true) do |f| %>
-        <%= render 'layouts/error_messages', model: f.object %>
+      <%= render 'layouts/flash_messages' %>
+      <!--エラーメッセージ表示すると背景途切れる一旦コメントアウト<%= render 'layouts/error_messages', model: f.object %>-->
         
       <div class="form-group">
-        <%= f.label :name, 'ユーザ名' %>
-        <%= f.text_field :name, class: 'form-control' %>
+        <%= f.label :name, 'ユーザ名', class: 'mb-0' %>
+        <%= f.text_field :name, class: 'form-control', :style => "height:30px" %>
       </div>
       
       <div class="form-group">
-        <%= f.label :email, 'メールアドレス' %>
-        <%= f.email_field :email, class: 'form-control' %>
+        <%= f.label :email, 'メールアドレス', class: 'mb-0' %>
+        <%= f.email_field :email, class: 'form-control', :style => "height:30px" %>
       </div>
       
       <div class="form-group">
-        <%= f.label :password, 'パスワード' %>
-        <%= f.password_field :password, class: 'form-control' %>
+        <%= f.label :password, 'パスワード', class: 'mb-0' %>
+        <%= f.password_field :password, class: 'form-control', :style => "height:30px" %>
       </div>
       
       <div class="form-group">
-        <%= f.label :password_confirmation, 'パスワード確認' %>
-        <%= f.password_field :password_confirmation, class: 'form-control' %>
+        <%= f.label :password_confirmation, 'パスワード確認', class: 'mb-0' %>
+        <%= f.password_field :password_confirmation, class: 'form-control', :style => "height:30px" %>
       </div>
       
       <%= f.submit '新規登録', class: 'btn btn-primary btn-block' %>
+      <p style="font-size:13px; margin-bottom:10px;">アカウントはお持ちですか?<%= link_to 'ログイン', login_path %></p>
     <% end %>
   </div>
 </div>
+

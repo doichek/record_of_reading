@@ -1,0 +1,30 @@
+<div class="text-center">
+  <h1>プロフィール内容の変更</h1>
+</div>
+  
+<div class="row">
+  <div class="col-sm-6 offset-sm-3">
+      
+    <%= form_with(model: @user, local: true) do |f| %>
+        <%= render 'layouts/error_messages', model: f.object %>
+        
+      <div class="form-group">
+        <%= f.label :genre, '好きなジャンル' %>
+        <%= f.text_field :genre, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :author, '好きな著者' %>
+        <%= f.text_field :author, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :comment, 'コメント' %>
+        <%= f.text_area :comment, class: 'form-control' %>
+      </div>
+      
+      <%= f.submit '変更', class: 'btn btn-primary btn-block' %>
+    <% end %>
+      
+  </div>
+</div>

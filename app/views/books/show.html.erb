@@ -1,18 +1,43 @@
-<div class="text-center">
-  <h1>No.<%= @book.id %>の詳細</h1>
-</div>
 
-<div class="row">
-  <div class="col-sm-6 offset-sm-3">
+
+<%= link_to books_path, :class => "btn btn-primary" do %>
+  <i class="fas fa-arrow-left"></i>
+<% end %>
+
+
+  <% if current_user.id == @book.user_id %>
+    
+    <%= link_to edit_book_path(@book), :class => "btn btn-primary" do %>
+      <i class="fas fa-edit"></i>
+    <% end %>
+
+  <% end %>
+  
+  
+
+
+<div class="row bg-book-open">
+  
+  
+  <div class="col-sm-5 offset-sm-1 mt-4">
+    <div class="card" style="height:190px">
+      <div class="card-body">
+        <% if @book.image? %>
+          <%= image_tag @book.image.url, class: 'rounded img-fluid mx-auto d-block', :style => 'height:140px', alt: "本画像" %>
+        <% else %>
+          <%= image_tag "no-image-book.jpg", class: 'rounded img-fluid mx-auto d-block', size: '140', alt: "デフォルト画像" %>
+        <% end %>
+      </div>
+    </div>
+    
     <table class="table table-striped table-bordered">
-      <thead>
-        <tr>
-          <th>状態</th>
-        </tr>
-      </thead>
       <tbody>
+        
         <tr>
-          <td>            
+          <th class="p-2">状態</th>
+        </tr>
+        <tr>
+          <td class="p-2">            
             <% if @book.status == '0'%>
                 未読
             <%elsif @book.status == '1'%>
@@ -22,63 +47,52 @@
             <% end %>
           </td>
         </tr>
-      </tbody>
-    </table>
-    <table class="table table-striped table-bordered">
-      <thead>
+  
         <tr>
-          <th>書籍名</th>
+          <th class="p-2">書籍名</th>
         </tr>
-      </thead>
-      <tbody>
+        
         <tr>
-          <td><%=@book.title%></td>
+          <td class="p-2"><%=@book.title%></td>
         </tr>
-      </tbody>
-    </table>
-
-    <table class="table table-striped table-bordered">
-      <thead>
+        
         <tr>
-          <th>著者名</th>
+          <th class="p-2">著者名</th>
         </tr>
-      </thead>
-      <tbody>
+        
         <tr>
-          <td><%=@book.author%></td>
+          <td class="p-2"><%=@book.author%></td>
         </tr>
-      </tbody>
-    </table>
-    
-    <table class="table table-striped table-bordered">
-      <thead>
+        
         <tr>
-          <th>登録日</th>
+          <th class="p-2">登録日</th>
         </tr>
-      </thead>
-      <tbody>
         <tr>
-          <td><%= @book.created_at.strftime('%Y/%m/%d')%></td>
+          <td class="p-2"><%= @book.created_at.strftime('%Y/%m/%d')%></td>
         </tr>
+        
       </tbody>
     </table>
     
-    <table class="table table-striped table-bordered">
-      <thead>
-        <tr>
-          <th>感想</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td style="white-space:pre-line"><%=@book.comment%></td>
-        </tr>
-      </tbody>
-    </table>
-    
-    <% if current_user.id == @book.user_id %>
-      <%= link_to "編集", edit_book_path(@book), class: 'btn btn-primary btn-block' %>
-      <%= link_to "削除", @book, method: :delete, data: { confirm: "本当に削除してよろしいですか" }, class: 'btn btn-danger btn-block', style: 'margin-bottom: 30px;' %>
-    <% end %>
   </div>
+  
+  <div class="col-sm-5 mt-4">
+    
+    <table class="table table-striped table-bordered sf">
+
+      <tbody>
+        <tr>
+          <th class="p-2">感想</th>
+        </tr>
+        <tr>
+          <td class="p-2" style="white-space:pre-line; height:29.5rem;"><%=@book.comment%></td>
+        </tr>
+      </tbody>
+      
+    </table>
+  
+  </div>
+
 </div>
+
+

@@ -1,11 +1,28 @@
+<%= form_with(model: @book, local: true) do |f| %>
+
 <div class="text-center">
   <h1>書籍の追加</h1>
 </div>
 
 <div class="row">
-  <div class="col-sm-6 offset-sm-3">
+  <aside class="mt-2 mb-3 offset-sm-1 col-sm-3">
+    <div class="card">
+      <div class="card-body">
+        <% if @book.image? %>
+          <%= image_tag @book.image.url, class: 'rounded img-fluid', :style => "height:200rem; width:200rem", alt: "本画像" %>
+        <% else %>
+          <%= image_tag "no-image-book.jpg", class: 'rounded img-fluid', size: '300', alt: "デフォルト画像" %>
+        <% end %>
+        <%= f.file_field :image, :style => "font-size:10px;" %>
+        
+      </div>
+    </div>
+  </aside>
+  
+  
+  <aside class="col-sm-6">
     
-    <%= form_with(model: @book, local: true) do |f| %>
+
       <%= render 'layouts/error_messages', model: f.object %>
         
       <div class="form-group">
@@ -30,5 +47,6 @@
       
       <%= f.submit '登録', class: 'btn btn-primary btn-block', style: 'margin-bottom: 30px;'  %>
     <% end %>
-  </div>
+  </aside>
+  
 </div>

@@ -58,6 +58,12 @@ gem 'kaminari'
 
 gem 'pry-byebug', group: :development
 
+#画像アップロード
+gem 'carrierwave'
+
+# 画像の加工
+gem 'mini_magick'
+
 group :production do
   gem 'pg', '>= 0.18', '< 2.0'
 end

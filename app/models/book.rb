@@ -6,4 +6,5 @@ class Book < ApplicationRecord
   validates :author, presence: false, length: { maximum: 50 }
   validates :comment, presence: false, length: { maximum: 255 }
 
+  mount_uploader :image, ImageUploader
 end

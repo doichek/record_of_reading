@@ -7,11 +7,18 @@ class SessionsController < ApplicationController
     password = params[:session][:password]
     if login(email, password)
       flash[:success] = 'ログインに成功しました'
-      redirect_to root_url
+      redirect_to books_url
     else
       flash.now[:danger] = 'ログインに失敗しました'
       render :new
     end
+  end
+
+  def create_guest
+    user = User.find_by(email: 'guest@yahoo.co.jp')
+    session[:user_id] = user.id
+    flash[:success] = 'ゲストユーザーでログインしました'
+    redirect_to books_url
   end
 
   def destroy

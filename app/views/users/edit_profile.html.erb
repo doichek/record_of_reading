@@ -1,30 +1,60 @@
-<div class="text-center">
-  <h1>プロフィール内容の変更</h1>
-</div>
-  
+<!--<div class="text-center mb-4">-->
+<!--  <p class="subtitle">プロフィール設定</p>-->
+<!--</div>-->
+
+<%= form_with(model: @user, local: true) do |f| %>  
+<%= render 'layouts/error_messages', model: f.object %>
+
+  <%= link_to books_path, :class => "btn btn-primary" do %>
+  <i class="fas fa-arrow-left"></i>
+  <% end %>
+
+
+  <%= f.button :type => "submit", :class => "btn btn-primary" do %>
+  <i class="fas fa-save"></i>
+  <% end %>
 <div class="row">
-  <div class="col-sm-6 offset-sm-3">
-      
-    <%= form_with(model: @user, local: true) do |f| %>
-        <%= render 'layouts/error_messages', model: f.object %>
+  
+  <aside class="mt-2 mb-3 offset-sm-1 col-sm-3">
+    
+    <div class="card">
+      <div class="card-header py-0">
+        <p class="my-1"><%= @user.name %></p>
+      </div>
+      <div class="card-body">
+        <% if @user.image? %>
+          <%= image_tag @user.image.url, class: 'rounded img-fluid mx-auto d-block', :style => 'height:150px', alt: "ユーザ画像" %>
+        <% else %>
+          <%= image_tag "no-image.jpg", class: 'rounded img-fluid mx-auto d-block', size: '150', alt: "デフォルト画像" %>
+        <% end %>
+        <%= f.file_field :image, :style => "font-size:10px;" %>
+      </div>
+    </div>
+  </aside>
+  
+  <aside class="col-sm-6">
         
-      <div class="form-group">
-        <%= f.label :genre, '好きなジャンル' %>
-        <%= f.text_field :genre, class: 'form-control' %>
-      </div>
-      
-      <div class="form-group">
-        <%= f.label :author, '好きな著者' %>
-        <%= f.text_field :author, class: 'form-control' %>
-      </div>
-      
-      <div class="form-group">
-        <%= f.label :comment, 'コメント' %>
-        <%= f.text_area :comment, class: 'form-control' %>
-      </div>
-      
-      <%= f.submit '変更', class: 'btn btn-primary btn-block' %>
+    <div class="form-group">
+      <%= f.label :genre, '好きなジャンル' %>
+      <%= f.text_field :genre, class: 'form-control' %>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :author, '好きな著者' %>
+      <%= f.text_field :author, class: 'form-control' %>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :comment, 'コメント' %>
+      <%= f.text_area :comment, class: 'form-control' %>
+    </div>
+    
     <% end %>
+    
       
-  </div>
+  </aside>
+    
 </div>
+
+
+

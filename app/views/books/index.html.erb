@@ -1,0 +1,155 @@
+
+
+<% if !@books.any? && (@user == current_user) %>
+  <p class="alert alert-info mt-1"><span class="fas fa-exclamation-circle"></span>「＋」を押して本を登録していきましょう</p>
+<% end %>
+
+<div class="row book-list">
+     
+  
+  <aside class="col-sm-3">
+    <div class="profile-card card mb-3">
+      
+      <div class="card-header p-2">
+       <span style="font-size:1.5rem;"><%= @user.name %></span>
+       <span style="float: right;"><%= render 'relationships/follow_button', user: @user %></span>
+      </div>
+      
+      <div class="card-body p-2">
+      <% if @user.image? %>
+        <%= image_tag @user.image.url, class: 'rounded img-fluid mx-auto d-block', :style => 'height:150px', alt: "ユーザ画像"  %>
+      <% else %>
+        <%= image_tag "no-image.jpg", class: 'rounded img-fluid mx-auto d-block', size: '150', alt: "デフォルト画像" %>
+      <% end %> 
+
+        
+      <table class="tabel-profile table table-striped table-bordered mt-2 mb-0">
+    
+        <tbody>
+          
+          <tr>
+            <td>
+              ● 好きなジャンル
+            </td>
+          </tr>
+          
+          <tr>
+            <td style="height:31px;">
+              <% if @user.genre != nil and @user.genre != '' %>
+                <%= @user.genre %>
+              <% end %>
+            </td>
+          </tr>
+          
+          <tr>
+            <td>
+              ● 好きな著者
+            </td>
+          </tr>
+          
+          <tr>
+            <td style="height:31px;">
+              <% if @user.author != nil and @user.author != '' %>
+                <%= @user.author %>
+              <% end %>
+           </td>
+          </tr>
+          
+          <tr>
+            <td>
+              ● コメント
+            </td>
+          </tr>
+          
+          <tr>
+            <td style="height:61px;">
+              <% if @user.comment != nil and @user.comment != '' %>
+                <%= @user.comment %>
+              <% end %>
+            </td>
+          </tr>
+          
+        </tbody>
+      </table>
+      
+      <% if @user == current_user %>
+        <%= link_to edit_profile_path(current_user), :style => "color:gray" do %>
+        <i class="fas fa-edit"></i>
+        <% end %>
+      <% end %>
+      
+      </div>
+    </div>    
+   </aside> 
+
+
+  <div class="col-sm-9">
+     
+    <ul class="nav">
+      <li class="nav-item nav-item1 p-1 mr-3">未読<span class="badge badge-secondary"><%= @count_midoku %></span></li>
+      <li class="nav-item nav-item2 p-1 mr-3">読中<span class="badge badge-secondary"><%= @count_dokutyu %></span></li>
+      <li class="nav-item nav-item3 p-1 mr-3">読了<span class="badge badge-secondary"><%= @count_dokuryo %></span></li>
+      <% if current_user == @user %>
+        <%= link_to new_book_path, :class => "btn btn-sm btn-primary" do %>
+        <i class="fas fa-plus"></i>
+        <% end %>
+      <% end %>
+      <img class="cat1" src = "/assets/cat.png">
+    </ul>
+      
+
+    <div class="shelf px-0">
+      
+      <% count = 0 %>
+      <% @books.each do |book| %>
+      <a class="book-card card d-inline-block" , href="<%= book_path(book) %>", style="height: 334px; width:55px; padding-top:0.5rem;">
+        <p><%= book.author %></p>
+        <p><%= book.title %></p>
+          <div>
+            <span class="badge badge-secondary">
+             <% if book.status == '0'%>
+                  未読
+                <%elsif book.status == '1'%>
+                  読中
+                <% else %>
+                  読了
+                <% end %>
+            </span>
+            <span class="badge badge-secondary">
+              <% if book.comment != ''%>
+                感想あり
+            　<% else %>
+                感想なし
+              <% end %>
+            </span>
+          </div> 
+      </a>
+      
+        <% count = count + 1 %>
+          <% if  (count % 10 == 0) then %>
+           <hr class="shelf-middle-PC">
+          <% elsif (count % 8 == 0) then %>
+           <hr class="shelf-middle-TABLET">
+          <% elsif (count % 5 == 0) then %>
+           <hr class="shelf-middle-SM">
+          <% end %>
+
+  
+        
+      <%= paginate @books %>
+      <% end %>
+      
+    </div>
+    
+    <div class="shelf-dummy">
+      <p class="book-card card d-inline-block", style="height: 334px; width:48px; padding-top:0.5rem; transform:rotate(-5deg);left:15px; top:20px;"></p>
+      <p class="book-card card d-inline-block", style="height: 334px; width:48px; padding-top:0.5rem; transform:rotate(-5deg);left:15px; top:20px;"></p>
+      <p class="book-card card d-inline-block", style="height: 334px; width:48px; padding-top:0.5rem; transform:rotate(-5deg);left:15px; top:20px;"></p>
+      <img class="cat2" src = "/assets/cat2.png">
+    </div>
+       
+ 
+  </div>
+
+   
+</div>

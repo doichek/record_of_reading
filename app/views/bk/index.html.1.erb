@@ -1,12 +1,18 @@
-<% if logged_in? %>
+
+
   <% unless @books.any? %>
     <p class="alert alert-info mt-1"><span class="fas fa-exclamation-circle"></span>「追加」を押して本を登録していきましょう</p>
   <% end %>
   <% if (@user.genre == nil or @user.genre == '') and (@user.author == nil or @user.author == '') and (@user.comment == nil or @user.comment == '') %>
     <p class="alert alert-info mt-1"><span class="fas fa-exclamation-circle"></span>「ユーザ名＞プロフィール内容変更」を押してプロフィールを完成させましょう</p>
   <% end %>
+  
   <li class="media">
-    <img class="mr-2 rounded" src="<%= gravatar_url(@user, { size: 50 }) %>" alt="">
+    <% if @user.image? %>
+      <%= image_tag @user.image.url, class: 'rounded img-fluid mr-2', size: '50', alt: "ユーザ画像"  %>
+    <% else %>
+      <%= image_tag "no-image.jpg", class: 'rounded img-fluid mr-2', size: '50', alt: "デフォルト画像" %>
+    <% end %> 
     <div class="media-body">
       <div>
         <%= @user.name %>
@@ -100,14 +106,3 @@
       <% end %>
     </table>
   </div>
-    
-<% else %>
-  <div class="center jumbotron">
-      <h1>こんにちは読書の世界へ</h1>
-      <p>あなたの読書体験を記録、共有していきましょう。</p>
-      <%= link_to 'ログイン', login_path, class: 'mt-2 mb-2 btn btn-primary' %>
-      <p>または</p>
-      <%= link_to '新規登録', signup_path, class: 'btn btn-secondary' %>
-  </div>
-  
-<% end %>
