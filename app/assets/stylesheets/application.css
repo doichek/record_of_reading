@@ -14,6 +14,9 @@
  *= require_self
  */
  
+.wf{
+   font-family: 'Yusei Magic', sans-serif;
+ }
  
  /*footerを最下部に固定する処理*/
 body {
@@ -26,6 +29,15 @@ body {
 
 .container {
   flex: 1;
+}
+
+
+
+@media (min-width:1000px) {
+  .container {
+  width:960px; 
+  margin:0 auto;
+  }
 }
 /*ここまで*/
 
@@ -196,15 +208,21 @@ thead{
   border-top: 50px solid #734e30;
   border-left: 50px solid #734e30;
   border-right: 50px solid #734e30;
+  border-image: url("mokume2.png") 5 5 round;
 }
 
 .shelf-dummy{
-  border-top: 20px solid #734e30;
+  border-top: 40px solid #734e30;
   border-left: 50px solid #734e30;
   border-right: 50px solid #734e30;
-  border-bottom: 80px solid #734e30;
+  border-bottom: 40px solid #734e30;
+  border-image: url("mokume2.png") 5 5 round;
   position:relative;
 }
+/*.shelf-dummy2{*/
+/*  border-bottom: 20px solid#734e30;*/
+/*  border-image: url("mokume2.png") 5 5 round;*/
+/*}*/
 
 .bg-book-open{
   background-image: url("book-open.jpg"); 
@@ -225,14 +243,14 @@ thead{
   display:inline-block;
 }
 
-.cat2{
-  position:absolute;
-  width: 150px;
-  height: 150px;
-  top:330px;
-  left:-50%;
-  display:inline-block;
-}
+/*.cat2{*/
+/*  position:absolute;*/
+/*  width: 150px;*/
+/*  height: 150px;*/
+/*  top:330px;*/
+/*  left:-50%;*/
+/*  display:inline-block;*/
+/*}*/
 
 
 .shelf-middle-SM{
@@ -244,11 +262,12 @@ thead{
 }
 
 .shelf-middle-PC{
-    border-width: 1rem;
-    border-color: #734e30;
+ 
+    border-width: 2.5rem;
     margin-top:0rem;
     margin-bottom:0rem;
     display:block;
+    border-image: url("mokume2.png") 5 5 round;
 }
 
 
@@ -284,30 +303,36 @@ thead{
   .card-columns{
     columns: 2;
   }
-   
-  .shelf-dummy {
-    border-top: 20px solid #734e30;
-    border-left: 25px solid #734e30;
-    border-right: 25px solid #734e30;
-    border-bottom: 70px solid #734e30;
-  }
   
+   
   .shelf {
     border-top: 50px solid #734e30;
     border-left: 25px solid #734e30;
     border-right: 25px solid #734e30;
+    border-image: url("mokume2.png") 5 5 round;
   }
+   
+  .shelf-dummy {
+    border-top: 40px solid #734e30;
+    border-left: 25px solid #734e30;
+    border-right: 25px solid #734e30;
+    border-bottom: 40px solid #734e30;
+    border-image: url("mokume2.png") 5 5 round;
+  }
+  
+  
+  
   
   shelf-middle-SM{
     display:none;
   }
 
   .shelf-middle-TABLET{
-    border-width: 1rem;
-    border-color: #734e30;
+    border-width: 2.5rem;
     margin-top:0rem;
     margin-bottom:0rem;
     display:block;
+    border-image: url("mokume2.png") 5 5 round;
   }
 
   .shelf-middle-PC{
@@ -321,6 +346,12 @@ thead{
   .book-list .col-sm-3{
     padding-right:0px;
     padding-left:0px;
+  }
+  
+  
+  .container{
+    width:715px; 
+    margin:0 auto;
   }
   
 }
@@ -351,14 +382,17 @@ thead{
     border-top: 50px solid #734e30;
     border-left: 25px solid #734e30;
     border-right: 25px solid #734e30;
+   border-image: url("mokume2.png") 5 5 round;
   }
   
   .shelf-dummy{
-    border-top: 20px solid #734e30;
+    border-top: 40px solid #734e30;
     border-left: 25px solid #734e30;
     border-right: 25px solid #734e30;
-    border-bottom: 70px solid #734e30;
+    border-bottom: 40px solid #734e30;
+    border-image: url("mokume2.png") 5 5 round;
   }
+  
   
   .card-columns {
       columns: 1;
@@ -373,11 +407,11 @@ thead{
   }
   
   .shelf-middle-SM{
-    border-width: 1rem;
-    border-color: #734e30;
+    border-width: 2.5rem;
     margin-top:0rem;
     margin-bottom:0rem;
     display:block;
+    border-image: url("mokume2.png") 5 5 round;
   }
 
   .shelf-middle-TABLET{
@@ -385,11 +419,21 @@ thead{
   }
 
   .shelf-middle-PC{
-    border-width: 1rem;
-    border-color: #734e30;
+    border-width: 2.5rem;
     margin-top:0rem;
     margin-bottom:0rem;
     display:block;
+    border-image: url("mokume2.png") 5 5 round;
+  }
+  
+  .book-list aside{
+    margin-left:15px;
+  }
+  
+  .container{
+    padding-right:30px;
+    width:375px; 
+    margin:0 auto;
   }
   
 }
